@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdEdit } from "react-icons/md";
 
 interface TodoProps {
   [key: string]: string;
@@ -64,13 +65,16 @@ const List = () => {
                 <p>{Object.keys(item)}</p>
               </div>
 
-              <div className="flex flex-row">
+              <div className="flex flex-row justify-center items-center space-x-2">
                 <p className=" flex justify-center items-center hover:bg-slate-100 p-2 text-xs border rounded-md ">
                   {Object.values(item)}
                 </p>
-                <button>
+                <div className="rounded-md  hover:bg-slate-100 transition-all duration-300 ease-in p-3">
                   <RiDeleteBin6Line />
-                </button>
+                </div>
+                <div className="rounded-md  hover:bg-slate-100 transition-all duration-300 ease-in p-3">
+                  <MdEdit />
+                </div>
               </div>
             </div>
           ))}
