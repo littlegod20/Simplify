@@ -1,24 +1,42 @@
 import { useEffect, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
+import { IoIosSave } from "react-icons/io";
 
 interface TodoProps {
-  [key: string]: string;
+  id: string;
+  text: string;
+  routine: string;
 }
 
 const List = () => {
   const [text, setText] = useState<string>("");
   const [routine, setRoutine] = useState<string>("personal");
   const [todos, setTodos] = useState<TodoProps[]>([]);
-  // const [isAdded, setIsAdded] = useState<boolean>(false)
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  // const [update, setUpdate] = useState<TodoProps[]>([])
 
   const handleAddTodo = () => {
     if (!text) {
       return null;
     } else if (text && routine) {
-      setTodos((prev: TodoProps[]) => [...prev, { [text]: routine }]);
+      setTodos((prev: TodoProps[]) => [
+        { id: Date.now().toString(), text, routine },
+        ...prev,
+      ]);
       setText("");
     }
+  };
+
+  // const handleUpdateTodo = (e:React.ChangeEvent<HTMLInputElement>, item) => {
+  //   if (text){
+  //     item.text = e.target.value
+  //     setUpdate((prev)=> [...prev, ])
+  //   }
+  // }
+
+  const toggleEdit = () => {
+    setIsEdit(!isEdit);
   };
 
   useEffect(() => {
@@ -60,20 +78,37 @@ const List = () => {
               className="flex flex-row justify-between items-center w-full pb-4"
               key={index}
             >
-              <div className="flex flex-row gap-2">
-                <input type="checkbox" />
-                <p>{Object.keys(item)}</p>
-              </div>
+              {isEdit ? (
+                <input
+                  className="focus:outline-none focus-visible:ring-1 focus-visible:ring-black border rounded-md p-2"
+                  // value={item.text}
+                />
+              ) : (
+                <div className="flex flex-row gap-2">
+                  <input type="checkbox" />
+                  <p> {item.text} </p>
+                </div>
+              )}
 
               <div className="flex flex-row justify-center items-center space-x-2">
                 <p className=" flex justify-center items-center hover:bg-slate-100 p-2 text-xs border rounded-md ">
-                  {Object.values(item)}
+                  {/* add a functionality that when the checkbox is ticked the color of the todo changes to green */}
+                  {item.routine}
                 </p>
-                <div className="rounded-md  hover:bg-slate-100 transition-all duration-300 ease-in p-3">
+                <div
+                  className="rounded-md  hover:bg-slate-100 transition-all duration-300 ease-in p-3"
+                  onClick={() => {
+                    setTodos(todos.filter((a) => a.id !== item.id));
+                  }}
+                >
                   <RiDeleteBin6Line />
                 </div>
                 <div className="rounded-md  hover:bg-slate-100 transition-all duration-300 ease-in p-3">
-                  <MdEdit />
+                  {isEdit ? (
+                    <IoIosSave onClick={toggleEdit} />
+                  ) : (
+                    <MdEdit onClick={toggleEdit} />
+                  )}
                 </div>
               </div>
             </div>
