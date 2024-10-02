@@ -13,7 +13,7 @@ const Todo = () => {
       return null;
     } else if (text && routine) {
       setTodos((prev: TodoProps[]) => [
-        { id: Date.now().toString(), text, routine },
+        { id: Date.now().toString(), text, routine, isEditting: false },
         ...prev,
       ]);
       setText("");
