@@ -1,14 +1,15 @@
-import { ListProps } from "../types";
+import { ListProps, TodoProps } from "../types";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
 import { IoIosSave } from "react-icons/io";
-import { useState } from "react";
 
 const List: React.FC<ListProps> = ({ todos, setTodos }) => {
-  const [isEdit, setIsEdit] = useState<boolean>(false);
-
-  const toggleEdit = () => {
-    setIsEdit(!isEdit);
+  const toggleEdit = (a: Partial<TodoProps>) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === a.id ? { ...todo, isEditting: !todo.isEditting } : todo
+      )
+    );
   };
 
   return (
@@ -19,7 +20,7 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
             className="flex flex-row justify-between items-center w-full pb-4"
             key={index}
           >
-            {isEdit ? (
+            {item.isEditting ? (
               <input
                 className="focus:outline-none focus-visible:ring-1 focus-visible:ring-black border rounded-md p-2"
                 // value={item.text}
@@ -45,10 +46,10 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
                 <RiDeleteBin6Line />
               </div>
               <div className="rounded-md  hover:bg-slate-100 transition-all duration-300 ease-in p-3">
-                {isEdit ? (
-                  <IoIosSave onClick={toggleEdit} />
+                {item.isEditting ? (
+                  <IoIosSave onClick={() => toggleEdit(item)} />
                 ) : (
-                  <MdEdit onClick={toggleEdit} />
+                  <MdEdit onClick={() => toggleEdit(item)} />
                 )}
               </div>
             </div>
