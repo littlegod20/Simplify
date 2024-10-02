@@ -1,10 +1,10 @@
 import "./App.css";
-import List from "./components/List";
+import Todo from "./components/Todo";
 
 function App() {
   return (
     <main className="flex flex-col items-center h-screen">
-      <List />
+      <Todo />
     </main>
   );
 }
