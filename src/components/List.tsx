@@ -27,18 +27,6 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
     );
   };
 
-  // const onUpdateTodoSelect = (
-  //   a: Partial<TodoProps>,
-  //   e: React.ChangeEvent<HTMLSelectElement>
-  // ) => {
-  //   const updateTodo = todos.find((item) => item.id === a.id);
-  //   setTodos((prevTodos) =>
-  //     prevTodos.map((todo) =>
-  //       todo === updateTodo ? { ...updateTodo, routine: e.target.value } : todo
-  //     )
-  //   );
-  // };
-
   return (
     <>
       <section className="pt-6 w-full ">
