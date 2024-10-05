@@ -47,7 +47,7 @@ const Todo = () => {
           </select>
 
           <div
-            className="hover:bg-slate-700 bg-slate-900 transition-colors duration-300 ease-out text-white text-base flex justify-center items-center py-2 px-5 rounded hover:cursor-pointer focus-within:"
+            className="hover:bg-slate-700 bg-slate-900 transition-colors duration-300 ease-out text-white text-base flex justify-center items-center py-2 px-5 rounded hover:cursor-pointer"
             onClick={handleAddTodo}
           >
             +

@@ -2,6 +2,7 @@ import { ListProps, TodoProps } from "../types";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
 import { IoIosSave } from "react-icons/io";
+import Select from "./Select";
 
 const List: React.FC<ListProps> = ({ todos, setTodos }) => {
   const toggleEdit = (a: Partial<TodoProps>) => {
@@ -52,16 +53,7 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
             <div className="flex flex-row justify-center items-center space-x-2">
               {item.isEditting ? (
                 <p>
-                  <select
-                    name="routine"
-                    className="p-2 rounded-md"
-                    value={item.routine}
-                    onChange={(e) => onUpdateTodo(item, e)}
-                  >
-                    <option value="personal">Personal</option>
-                    <option value="work">Work</option>
-                    <option value="shopping">Shopping</option>
-                  </select>
+                  <Select todoItem={item} onUpdateTodo={onUpdateTodo} />
                 </p>
               ) : (
                 <p className=" flex justify-center items-center hover:bg-slate-100 p-2 text-xs border rounded-md ">
