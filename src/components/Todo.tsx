@@ -20,13 +20,6 @@ const Todo = () => {
     }
   };
 
-  // const handleUpdateTodo = (e:React.ChangeEvent<HTMLInputElement>, item) => {
-  //   if (text){
-  //     item.text = e.target.value
-  //     setUpdate((prev)=> [...prev, ])
-  //   }
-  // }
-
   useEffect(() => {
     console.log("new to-do:", text);
     console.log("new routine:", routine);
