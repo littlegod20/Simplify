@@ -65,7 +65,6 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
                 </p>
               ) : (
                 <p className=" flex justify-center items-center hover:bg-slate-100 p-2 text-xs border rounded-md ">
-                  {/* add a functionality that when the checkbox is ticked the color of the todo changes to green */}
                   {item.routine}
                 </p>
               )}
