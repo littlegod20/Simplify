@@ -27,18 +27,6 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
     );
   };
 
-  // const onUpdateTodoSelect = (
-  //   a: Partial<TodoProps>,
-  //   e: React.ChangeEvent<HTMLSelectElement>
-  // ) => {
-  //   const updateTodo = todos.find((item) => item.id === a.id);
-  //   setTodos((prevTodos) =>
-  //     prevTodos.map((todo) =>
-  //       todo === updateTodo ? { ...updateTodo, routine: e.target.value } : todo
-  //     )
-  //   );
-  // };
-
   return (
     <>
       <section className="pt-6 w-full ">
@@ -57,7 +45,7 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
             ) : (
               <div className="flex flex-row gap-2">
                 <input type="checkbox" />
-                <p className="max-w-44 truncate"> {item.text} </p>
+                <p className="max-w-32 truncate"> {item.text} </p>
               </div>
             )}
 
@@ -77,7 +65,6 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
                 </p>
               ) : (
                 <p className=" flex justify-center items-center hover:bg-slate-100 p-2 text-xs border rounded-md ">
-                  {/* add a functionality that when the checkbox is ticked the color of the todo changes to green */}
                   {item.routine}
                 </p>
               )}
