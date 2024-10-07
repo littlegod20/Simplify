@@ -17,3 +17,8 @@ export type SelectProps = {
     e: React.ChangeEvent<HTMLSelectElement>
   ) => void;
 };
+
+export interface OptionProps {
+  value: string;
+  label: string;
+}
