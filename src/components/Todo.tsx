@@ -4,6 +4,7 @@ import { OptionProps, TodoProps } from "../types";
 import List from "./List";
 import CustomType from "./CustomType";
 import TodoText from "./TodoText";
+import { ListContext } from "./useContext/ListContext";
 
 const defaultOptions: OptionProps[] = [
   { value: "personal", label: "Personal" },
@@ -74,7 +75,9 @@ const Todo = () => {
           )}
         </section>
 
-        <List todos={todos} setTodos={setTodos} options={options} />
+        <ListContext.Provider value={options}>
+          <List todos={todos} setTodos={setTodos} />
+        </ListContext.Provider>
       </div>
     </div>
   );

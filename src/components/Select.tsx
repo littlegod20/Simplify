@@ -1,6 +1,8 @@
 import { SelectProps } from "../types";
+import { useOptionsContext } from "./useContext/ListContext";
 
-const Select = ({ todoItem, onUpdateTodo, options }: SelectProps) => {
+const Select = ({ todoItem, onUpdateTodo }: SelectProps) => {
+  const options = useOptionsContext();
   return (
     <>
       <select
@@ -9,7 +11,7 @@ const Select = ({ todoItem, onUpdateTodo, options }: SelectProps) => {
         value={todoItem.routine}
         onChange={(e) => onUpdateTodo(todoItem, e)}
       >
-        {options.map((option, index) => (
+        {options?.map((option, index) => (
           <option key={index}>{option.label}</option>
         ))}
       </select>
