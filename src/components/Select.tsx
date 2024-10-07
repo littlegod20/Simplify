@@ -1,6 +1,6 @@
 import { SelectProps } from "../types";
 
-const Select = ({ todoItem, onUpdateTodo }: SelectProps) => {
+const Select = ({ todoItem, onUpdateTodo, options }: SelectProps) => {
   return (
     <>
       <select
@@ -9,9 +9,9 @@ const Select = ({ todoItem, onUpdateTodo }: SelectProps) => {
         value={todoItem.routine}
         onChange={(e) => onUpdateTodo(todoItem, e)}
       >
-        <option value="personal">Personal</option>
-        <option value="work">Work</option>
-        <option value="shopping">Shopping</option>
+        {options.map((option, index) => (
+          <option key={index}>{option.label}</option>
+        ))}
       </select>
     </>
   );

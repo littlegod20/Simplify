@@ -4,7 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { IoIosSave } from "react-icons/io";
 import Select from "./Select";
 
-const List: React.FC<ListProps> = ({ todos, setTodos }) => {
+const List: React.FC<ListProps> = ({ todos, setTodos, options }) => {
   const toggleEdit = (a: Partial<TodoProps>) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
@@ -53,7 +53,11 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
             <div className="flex flex-row justify-center items-center space-x-2">
               {item.isEditting ? (
                 <p>
-                  <Select todoItem={item} onUpdateTodo={onUpdateTodo} />
+                  <Select
+                    todoItem={item}
+                    onUpdateTodo={onUpdateTodo}
+                    options={options}
+                  />
                 </p>
               ) : (
                 <p className=" flex justify-center items-center hover:bg-slate-100 p-2 text-xs border rounded-md ">
