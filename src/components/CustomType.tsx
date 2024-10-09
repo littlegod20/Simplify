@@ -1,15 +1,15 @@
 interface CustomTypeProps {
-  onOptionChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onOptionAdd: (e: React.ChangeEvent<HTMLInputElement>) => void;
   addCustom: () => void;
 }
 
-const CustomType = ({ onOptionChange, addCustom }: CustomTypeProps) => {
+const CustomType = ({ onOptionAdd, addCustom }: CustomTypeProps) => {
   return (
     <div className="flex justify-end gap-3">
       <input
         className="focus:outline-none focus-visible:ring-1 focus-visible:ring-black border rounded-md p-2 w-44"
         name="routine"
-        onChange={(e) => onOptionChange(e)}
+        onChange={(e) => onOptionAdd(e)}
         placeholder="add a custom type"
       />
       <button
