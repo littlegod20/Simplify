@@ -31,9 +31,12 @@ const Todo = () => {
     }
   };
 
-  const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onOptionAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
     const addedCustom = e.target.value;
-    setNewOption({ value: addedCustom, label: addedCustom.toUpperCase() });
+    setNewOption({
+      value: addedCustom,
+      label: addedCustom.charAt(0).toUpperCase() + addedCustom.slice(1),
+    });
   };
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -49,6 +52,7 @@ const Todo = () => {
   const addCustom = () => {
     if (newOption) {
       setOptions((prevOptions) => [...prevOptions, newOption]);
+      setRoutine(newOption.value); // this is placed here so that after user has added the custom routine, the selector automatically switches to the new custom value
     }
     setNewOption(null);
     setIsCustom(false);
@@ -71,7 +75,7 @@ const Todo = () => {
           </div>
 
           {isCustom && (
-            <CustomType addCustom={addCustom} onOptionChange={onOptionChange} />
+            <CustomType addCustom={addCustom} onOptionAdd={onOptionAdd} />
           )}
         </section>
 
