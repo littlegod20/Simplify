@@ -5,6 +5,8 @@ import List from "./List";
 import CustomType from "./CustomType";
 import TodoText from "./TodoText";
 import { ListContext } from "./useContext/ListContext";
+import CompletedTodos from "./CompletedTodos";
+import UncompletedTodos from "./UncompletedTodos";
 
 const defaultOptions: OptionProps[] = [
   { value: "personal", label: "Personal" },
@@ -18,8 +20,8 @@ const Todo = () => {
   const [isCustom, setIsCustom] = useState<boolean>(false);
   const [newOption, setNewOption] = useState<OptionProps | null>();
   const [options, setOptions] = useState<OptionProps[]>(defaultOptions);
-  // const [isChecked, setIsChecked] = useState();
   const [completedTodos, setCompletedTodos] = useState<TodoProps[]>([]);
+  const [unCompletedTodos, setUnCompletedTodos] = useState<TodoProps[]>([]);
 
   const handleAddTodo = () => {
     if (!text) {
@@ -87,6 +89,16 @@ const Todo = () => {
     setTodos((todos) => todos.filter((todo) => !todo.isChecked));
   };
 
+  useEffect(() => {
+    const unCompleted: TodoProps[] = [];
+
+    if (unCompleted) {
+      return setUnCompletedTodos(
+        todos.slice(0).filter((item) => !item.isChecked)
+      );
+    }
+  }, [todos]);
+
   return (
     <div>
       <div className="flex flex-col items-start border p-10 shadow-xl shadow-gray-300 rounded-md">
@@ -112,6 +124,13 @@ const Todo = () => {
           <List todos={todos} setTodos={setTodos} onChecked={onChecked} />
         </ListContext.Provider>
       </div>
+      <section className="flex flex-row gap-2 justify-between items-start mt-10 w-full rounded-lg p-3">
+        <CompletedTodos completedTodos={completedTodos} />
+        <UncompletedTodos
+          unCompletedTodos={unCompletedTodos}
+          onChecked={onChecked}
+        />
+      </section>
     </div>
   );
 };

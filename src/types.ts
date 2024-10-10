@@ -12,7 +12,6 @@ export interface ListProps {
     e: React.ChangeEvent<HTMLInputElement>,
     a: Partial<TodoProps>
   ) => void;
-  // isChecked: boolean;
   setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>;
 }
 
