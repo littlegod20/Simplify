@@ -3,10 +3,15 @@ export interface TodoProps {
   text: string;
   routine: string;
   isEditting: boolean;
+  isChecked?: boolean;
 }
 
 export interface ListProps {
   todos: TodoProps[];
+  onChecked: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    a: Partial<TodoProps>
+  ) => void;
   setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>;
 }
 

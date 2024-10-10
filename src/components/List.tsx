@@ -4,7 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { IoIosSave } from "react-icons/io";
 import Select from "./Select";
 
-const List: React.FC<ListProps> = ({ todos, setTodos }) => {
+const List: React.FC<ListProps> = ({ todos, setTodos, onChecked }) => {
   const toggleEdit = (a: Partial<TodoProps>) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
@@ -45,7 +45,12 @@ const List: React.FC<ListProps> = ({ todos, setTodos }) => {
               />
             ) : (
               <div className="flex flex-row gap-2">
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  value={item.text}
+                  checked={item.isChecked}
+                  onChange={(e) => onChecked(e, item)}
+                />
                 <p className="max-w-32 truncate"> {item.text} </p>
               </div>
             )}
