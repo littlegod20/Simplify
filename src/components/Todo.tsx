@@ -87,10 +87,6 @@ const Todo = () => {
     setTodos((todos) => todos.filter((todo) => !todo.isChecked));
   };
 
-  useEffect(() => {
-    console.log("updated Todos:", todos);
-  }, [todos]);
-
   return (
     <div>
       <div className="flex flex-col items-start border p-10 shadow-xl shadow-gray-300 rounded-md">
